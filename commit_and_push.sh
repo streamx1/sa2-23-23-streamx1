@@ -12,7 +12,7 @@ for local_repository in $(git remote)
 
 do 
 
-git push $local_repository –all
+git push $local_repository --all
 
 done
 
