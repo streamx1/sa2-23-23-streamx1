@@ -3,6 +3,8 @@ git add --all
 echo "Input commit name"
 read commitname
 git commit -m “$commitname'_'$(date '+%d-%m-%Y__%H-%M')”
-git push origin-github --all
-git push origin-gitlab --all
+for local.repository in $(git remote)
+do git push $local.repository –all
+done
+
 
