@@ -1,4 +1,4 @@
-name: 04GitOps github action to find tabs in code
+name: 04GitOps  github action to find tabs in code
 
 on:
   push:
