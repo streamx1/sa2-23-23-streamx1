@@ -9,6 +9,7 @@ on:
       - master
 
 jobs:
+  prepare:
     runs-on: [my_runner]
     steps:
 
