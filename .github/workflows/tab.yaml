@@ -13,7 +13,7 @@ jobs:
    # runs-on: [my_runner]
     runs-on: ubuntu-latest
     steps:
-
+      - uses action/checkout@v3
       - name: Find the tab
         uses: tj-actions/changed-files@v35
         run: |
