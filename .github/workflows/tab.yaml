@@ -9,8 +9,8 @@ on:
       - master
 
 jobs:
-  runs-on: [my_runner]
-  steps:
+   runs-on: [my_runner]
+   steps:
 
       - name: Find the tab
         uses: tj-actions/changed-files@v35
