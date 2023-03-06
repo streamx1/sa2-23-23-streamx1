@@ -11,7 +11,7 @@ jobs:
         uses: tj-actions/changed-files@v35
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1 
+          echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1
 
       - name: Upload the report
         uses: actions/upload-artifact@v2
