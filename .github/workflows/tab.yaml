@@ -10,7 +10,8 @@ on:
 
 jobs:
   prepare:
-    runs-on: [my_runner]
+   # runs-on: [my_runner]
+    runs-on: ubuntu-latest 
     steps:
 
       - name: Find the tab
