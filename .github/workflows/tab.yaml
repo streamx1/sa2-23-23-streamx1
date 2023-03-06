@@ -13,9 +13,9 @@ jobs:
     runs-on: [my_runner]
     steps:
 
-      - name: Find the tab
-        uses: tj-actions/changed-files@v35
-        run: |
+      - name: Find the tab 
+        uses: tj-actions/changed-files@v35 
+      - run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1
 
