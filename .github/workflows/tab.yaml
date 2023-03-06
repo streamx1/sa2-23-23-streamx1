@@ -1,4 +1,4 @@
-name: 04GitOps github action to find tabs in code
+name: 04GitOps  github action to find tabs in code
 
 on:
   push:
@@ -9,11 +9,16 @@ on:
       - master
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-
-      - name: Find the tab
+  prepare:
+    runs-on: ubuntu_latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
         uses: tj-actions/changed-files@v35
+      - name: Found tabs in the files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1
