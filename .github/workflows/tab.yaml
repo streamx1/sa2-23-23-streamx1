@@ -2,9 +2,11 @@ name: 04GitOps
 
 on:
   push:
+    branches:
+      - master
   pull_request:
-  branches:
-    - master
+    branches:
+      - master
 
 jobs:
   runs-on: ubuntu-latest
