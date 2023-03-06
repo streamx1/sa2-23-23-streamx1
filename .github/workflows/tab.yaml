@@ -1,4 +1,4 @@
-name: `github action to find tabs in files`
+name: github to find tabs in files
 
 on:
   push:
