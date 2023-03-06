@@ -1,15 +1,9 @@
-name: 04GitOps  github action to find tabs in code
-
+name: Count tabs in changed files
 on:
-  push:
-    branches:
-      - master
   pull_request:
-    branches:
-      - master
-
+    branches: [ "main" ]
 jobs:
-  prepare:
+  my_action:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
@@ -19,13 +13,11 @@ jobs:
           id: changed-files
           uses: tj-actions/changed-files@v35
         - name: Found tabs in the files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1
-
-
-      - name: Upload the report
-        uses: actions/upload-artifact@v2
-        with:
-          path: tab_report.log
-
+          run: |
+               for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+               echo "The $file has `grep -P '\t' $file | wc -l` tabs" >> report.log
+               done
+        - name: Upload report
+          uses: actions/upload-artifact@v2
+          with:
+           path: report.log
