@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  runs-on: [my_ ubuntu-latest]
+  runs-on: [my_runner]
   steps:
 
       - name: Find the tab
