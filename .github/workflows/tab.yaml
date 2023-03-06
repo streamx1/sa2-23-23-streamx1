@@ -1,0 +1,57 @@
+<<<<<<< HEAD
+name: 04GitOps  github action to find tabs in code
+=======
+name: Check remote host and push report
+>>>>>>> 673b5a2 (add first action)
+
+on:
+  push:
+    branches:
+<<<<<<< HEAD
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  prepare:
+    runs-on: ubuntu_latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+      - name: Found tabs in the files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "File $file content `grep '\t' $file | wc -l` TAB" >> tab_report.log 2>&1
+
+
+      - name: Upload the report
+        uses: actions/upload-artifact@v2
+        with:
+          path: tab_report.log
+
+=======
+    - master
+    - second
+
+jobs:
+  prepare:
+    #runs-on: [my_runner]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install netcat
+        run: sudo apt update && sudo apt install -y netcat
+      - run: echo "netcat has been installed"
+      - run: |
+          nc -z -v -w2 onliner.by 443 > nc_report.log 2>&1
+          touch /tmp/file.log
+          ls -la
+      - name: Upload report
+        uses: actions/upload-artifact@v2
+        with:
+          path: nc_report.log
+>>>>>>> 673b5a2 (add first action)
