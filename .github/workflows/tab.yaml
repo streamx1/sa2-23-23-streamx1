@@ -1,4 +1,4 @@
-name: github to find tabs in files
+name: 04GitOps
 
 on:
   push:
