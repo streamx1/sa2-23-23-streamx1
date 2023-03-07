@@ -28,6 +28,6 @@ jobs:
         done
 
     - name: Upload report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         path: nc_report.log
