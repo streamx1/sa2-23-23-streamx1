@@ -14,21 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: checkout
+    - name: action1
       uses: actions/checkout@v3
 
-    - name: Get changed files
+    - name: action2
       id: changed-files
       uses: tj-actions/changed-files@v35
 
-    - name: Calculate the tabs
+    - name: count tabs
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "$file was changed" >> output.log 
-          echo "He have `grep -P '\t' $file | wc -l` tabs." >> output.log
+          echo "File $file has `grep -P '\t' $file | wc -l` TAB." >> nc_report.log
         done
 
     - name: Upload report
       uses: actions/upload-artifact@v3
       with:
-        path: output.log
+        path: nc_report.log
