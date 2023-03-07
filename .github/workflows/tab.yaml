@@ -1,4 +1,4 @@
-name: Count tabs in changed files
+name: MY Count tabs in changed files
 on:
   pull_request:
     branches: [ "main" ]
