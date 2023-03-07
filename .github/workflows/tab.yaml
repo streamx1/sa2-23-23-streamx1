@@ -1,7 +1,14 @@
-name: Check files and search tabs
+name: TAB counter
+
 on:
   push:
+    branches:
+    - master
+
   pull_request:
+    branches:
+    - master
+
 jobs:
   Checkingfiles:
     runs-on: ubuntu-latest
