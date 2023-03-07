@@ -24,7 +24,7 @@ jobs:
     - name: count tabs
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo "File $file has `grep -o $'\t' $file | wc -l` TAB." >> nc_report.log
+          echo "File $file has `grep '\t' $file | wc -l` TAB." >> nc_report.log
         done
 
     - name: Upload report
