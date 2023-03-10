@@ -2,8 +2,7 @@
 - name: install and configure nginx with two virtual hosts
   hosts: web-servers
   become: true
-
-vars:
+  vars:
     vhosts:
       - name: example.com
         fqdn: www.example.com
@@ -12,14 +11,13 @@ vars:
         fqdn: www.test.com
         index_content: "Hello, test.com! Hostname:  {{ fqdn }}"
 
-
   tasks:
-  - name: apt nginx
-    apt:
-      name: nginx
-      state: latest
+    - name: apt nginx
+      apt:
+        name: nginx
+        state: latest
 
-- name: set up hosts
+    - name: set up hosts
       template:
         src: templates/nginx-vhost.j2
         dest: "/etc/nginx/sites-available/{{ item.name }}"
@@ -32,7 +30,7 @@ vars:
         dest: "/var/www/{{ item.name }}/index.html"
       with_items: "{{ vhosts }}"
 
-- name: enable virtual hosts
+    - name: enable virtual hosts
       file:
         src: "/etc/nginx/sites-available/{{ item.name }}"
         dest: "/etc/nginx/sites-enabled/{{ item.name }}"
@@ -45,6 +43,4 @@ vars:
       service:
         name: nginx
         state: reloaded
-
-
 
