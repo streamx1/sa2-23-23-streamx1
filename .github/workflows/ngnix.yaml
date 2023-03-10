@@ -1,5 +1,5 @@
 ---
-- name: install and configure nginx with two virtual hosts
+- name: install and configure nginx with two virtual hosts.
   hosts: web-servers
   become: true
   vars:
