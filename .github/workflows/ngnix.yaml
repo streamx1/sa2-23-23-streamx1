@@ -1,8 +1,7 @@
 ---
-- name: install and configure nginx with two virtual hosts
   hosts: web-servers
   become: true
-- vars:
+    vars:
     vhosts:
       - name: example.com
         fqdn: www.example.com
