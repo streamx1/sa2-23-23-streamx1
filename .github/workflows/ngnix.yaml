@@ -10,7 +10,7 @@
         index_content: "Hello, test.com! Hostname:  {{ fqdn }}"
 
   tasks:
-    - name: apt nginx
+    - name: apt nginx1
       apt:
         name: nginx
         state: latest
