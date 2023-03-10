@@ -1,6 +1,5 @@
 ---
 - hosts: db_all
-  become: true
   vars:
     vhosts:
       - name: example.com
