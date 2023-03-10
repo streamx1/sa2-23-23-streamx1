@@ -1,0 +1,44 @@
+---
+  hosts: web-servers
+  become: true
+    vars:
+    vhosts:
+      - name: example.com
+        fqdn: www.example.com
+        index_content: "Hello, example.com! Hostname: {{ fqdn }}"
+      - name: test.com
+        fqdn: www.test.com
+        index_content: "Hello, test.com! Hostname:  {{ fqdn }}"
+
+  tasks:
+    - name: apt nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: set up hosts
+      template:
+        src: templates/nginx-vhost.j2
+        dest: "/etc/nginx/sites-available/{{ item.name }}"
+      with_items: "{{ vhosts }}"
+      notify: Reload Nginx
+
+    - name: create index files
+      template:
+        src: templates/index.j2
+        dest: "/var/www/{{ item.name }}/index.html"
+      with_items: "{{ vhosts }}"
+
+    - name: enable virtual hosts
+      file:
+        src: "/etc/nginx/sites-available/{{ item.name }}"
+        dest: "/etc/nginx/sites-enabled/{{ item.name }}"
+        state: link
+      with_items: "{{ vhosts }}"
+      notify: Reload Nginx
+
+  handlers:
+    - name: reload Nginx
+      service:
+        name: nginx
+        state: reloaded
